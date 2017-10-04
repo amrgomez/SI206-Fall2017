@@ -6,7 +6,7 @@ import unittest
 
 ##COMMENT YOUR CODE WITH:
 # Section Day/Time:
-# People you worked with:
+# People you worked with:Kayla Williams
 
 ######### DO NOT CHANGE PROVIDED CODE #########
 ### Below is the same cards.py code you saw in lecture.
@@ -135,10 +135,59 @@ if __name__ == "__main__":
 
 ### Write unit tests below this line for the cards code above.
 #if card created with rank 12,"Queen" rank
-
+class CardTests(unittest.TestCase):
+	def test1(self):
+		queen= Card(rank=12)
+		self.assertEqual(str(queen), "Queen of Diamonds", "Checking you can make a card with rank Queen")
+#Rank 1, "Ace"
+	def test2(self):
+		ace= Card(rank=1)
+		self.assertEqual(str(ace), "Ace of Diamonds")
+#Card instance with rank 3
+	def test3(self):
+		card3= Card(0,3)
+		self.assertEqual(card3.rank, 3, "Rank of 3")
+#Suit 1, suit is Clubs
+	def test_4(self):
+		card4= Card(1,2)
+		self.assertEqual(card4.suit, "Clubs")
+#Suit 2, suit is Hearts
+	def test_5(self):
+		card5= Card(suit=2)
+		self.assertEqual(str(card5), "2 of Hearts")
+#Test that if you create a card instance, it will have access to a
+#variable suit_names that contains the list ["Diamonds","Clubs","Hearts","Spades"]
+	def test_cardInstance(self):
+		cards = Card()
+		self.assertEqual(cards.suit_names,["Diamonds","Clubs","Hearts","Spades"])
 #if you invoke __str__ method instance that is created with suit=2
 #rank=7, it returns the string '7 of hearts'
-
+	def test7(self):
+		card7= Card(2,7)
+		self.assertEqual(str(card7), "7 of Hearts")
+#deck instance w 52 cards
+	def test8(self):
+		cards1= Deck()
+		self.assertEqual(len(cards1.cards), 52)
+#pop_card instance returns card instance
+	def test9(self):
+		d=Deck()
+		ci= Card()
+		self.assertEqual(type(d.pop_card()),type(ci))
+#test play_war_game for 3 element tuples
+	def test10(self):
+		w= play_war_game()
+		self.assertEqual(len(w),3)
+		self.assertEqual(type(w[0]), str)
+#2 additional tests
+#Test that suit is Spades and rank gives us 2
+	def test11_1(self):
+		card11= Card(3,2)
+		self.assertEqual(str(card11), "2 of Spades")
+#Test to find faces along with their suit number
+	def test11_2(self):
+		c11=Card()
+		self.assertEqual(c11.faces,{1:"Ace",11:"Jack",12:"Queen",13:"King"})
 #############
 ## The following is a line to run all of the tests you include:
 unittest.main(verbosity=2)
